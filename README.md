@@ -94,6 +94,90 @@ pipeline {
 **Access Controls:** Ensure only authorized personnel have access to Jenkins and its configurations.
 
 
+# Console Output
+
+```
+Started by remote host 172.18.236.39
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/automation-multiple-ec2-instance
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Run Jenkins Job)
+[Pipeline] echo
+Running Jenkins job...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Stop AWS EC2 Instances)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+Stopping AWS EC2 instances...
+[Pipeline] readFile
+[Pipeline] sh
++ export AWS_ACCESS_KEY_ID=your-key-id-show-here
++ export AWS_SECRET_ACCESS_KEY=your-access key show here
++ export AWS_REGION=your-regin-show-here
++ aws ec2 stop-instances --instance-ids i-087b6044e59352a79 i-0377e7cdf013e4c32 i-0cbe11f2a67404e57 --region us-east-1
+{
+    "StoppingInstances": [
+        {
+            "CurrentState": {
+                "Code": 64,
+                "Name": "stopping"
+            },
+            "InstanceId": "i-087b6044e59352a79",
+            "PreviousState": {
+                "Code": 16,
+                "Name": "running"
+            }
+        },
+        {
+            "CurrentState": {
+                "Code": 64,
+                "Name": "stopping"
+            },
+            "InstanceId": "i-0cbe11f2a67404e57",
+            "PreviousState": {
+                "Code": 16,
+                "Name": "running"
+            }
+        },
+        {
+            "CurrentState": {
+                "Code": 64,
+                "Name": "stopping"
+            },
+            "InstanceId": "i-0377e7cdf013e4c32",
+            "PreviousState": {
+                "Code": 16,
+                "Name": "running"
+            }
+        }
+    ]
+}
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Job completed.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+
+```
+
 ## Contributing
 
 Feel free to contribute by opening issues or pull requests!
